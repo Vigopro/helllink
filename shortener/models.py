@@ -2,6 +2,8 @@ from .utils import code_generator, create_shortcode
 from .validators import validate_url, validate_dot_com
 from django.conf import settings
 from django.db import models
+# from django.core.urlresolvers import reverse
+from django_hosts.resolvers import reverse
 
 SHORTCODE_MAX = getattr(settings, "SHORTCODE_MAX", 15)
 
@@ -37,9 +39,13 @@ class ShortURL(models.Model):
             self.shortcode = create_shortcode(self)
         super(ShortURL, self).save(*args, **kwargs)
 
-    # class Meta:
-    #     ordering = "-id"
-
     def __str__(self):
         return str(self.url)
 
+    def get_short_url(self):
+        url_path = reverse("scode", kwargs={"shortcode": self.shortcode},
+                                host="www",
+                                scheme="http",
+                                # port="8000",
+                        )
+        return url_path
