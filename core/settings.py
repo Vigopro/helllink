@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #third libs
     'django_hosts',
     #myapps
+    'analytics',
     'shortener',
 ]
 

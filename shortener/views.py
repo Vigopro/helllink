@@ -1,8 +1,10 @@
+from .forms import SubmitUrlForm
 from .models import ShortURL
-from django.http import HttpResponse, HttpResponseRedirect
+from analytics.models import ClickCounter
+from django.http import HttpResponse, HttpResponseRedirect,Http404
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from .forms import SubmitUrlForm
+
 
 def home_view_fbv(request, *args, **kwargs):
     if request.method == "POST":
@@ -42,8 +44,13 @@ class HomeView(View):
         return render(request, template, context)
 
 
-class ShortCBView(View):
+class URLRedirectView(View):
     def get(self, request, shortcode=None, *args, **kwargs):
-        obj = get_object_or_404(ShortURL, shortcode=shortcode)
+        qs = ShortURL.objects.filter(shortcode__iexact=shortcode)
+        if qs.count()!=1 and not qs.exist():
+            raise Http404
+        obj = qs.first()
+        print(ClickCounter.objects.create_event(obj))
         return HttpResponseRedirect(obj.url)
+
 
