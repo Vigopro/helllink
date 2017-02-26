@@ -1,7 +1,23 @@
-<div style="width: 800px; margin: 0 auto;">
-    <h1>{{ title }}</h1>
-    <form method="POST" action=".">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Shorten">
-    </form>
-</div>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <!-- Header -->
+<header id="top" class="header">
+    <div class="text-vertical-center">
+        <h1>{{ title }}</h1>
+        <!--             <blockquote class="blockquote-reverse">
+        <p>Our life is fritted away by detail... Simplify, simplify, simplify! Simplicity of life and elevation of purpose.</p>
+        <footer><cite>Henry David Thoreau</cite></footer>
+        </blockquote> -->
+        <form method="POST" action="."> {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-dark btn-lg" type="submit" value="Shorten &raquo;" role="button">
+        </form>
+        <hr class="small">
+        <p class="text-muted">Copyright &copy; My Website 2017</p>
+    </div>
+</header>
+{% endblock content %}
+
+
+

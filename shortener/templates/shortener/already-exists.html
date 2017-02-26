@@ -1,9 +1,20 @@
-<div style="align-text: center; width: 800px; margin: 0 auto;">
-    <h1>Exists</h1>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}
+{{ object.shortcode }} | {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+<header id="top" class="header">
+<div class="text-vertical-center">
+    <h1>Exists Already</h1>
     <p>{{ object.url }}</p>
-    {% if object.clickcounter %}
-    <p>Count: {{ object.clickcounter.count }}</p>
+    {% if object.clickcounter.count %}
+        <p>Count: {{ object.clickcounter.count }}</p>
     {% endif %}
-    <p><a href="{{ object.get_short_url }}">{{ object.get_short_url }}</a></p>
-    <a href="/">+ New</a>
+
+    <p><a class="btn btn-link" href="{{ object.get_short_url }}">{{ object.get_short_url }}</a></p>
+    <a class="btn btn-dark btn-lg" type="submit" href="/" role="button">+ New</a>
 </div>
+</header>
+{% endblock content %}

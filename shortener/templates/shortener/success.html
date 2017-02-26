@@ -1,7 +1,16 @@
-<div style="align-text: center; width: 800px; margin: 0 auto;">
-    <h1>Created</h1>
-    <p>{{ object.url }}</p>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}
+{{ object.shortcode }} | {{ block.super }}
+{% endblock title %}
 
-    <p><a href="{{ object.get_short_url }}">{{ object.get_short_url }}</a></p>
-    <a href="/">+ New</a>
+{% block content %}
+<header id="top" class="header">
+<div class="text-vertical-center">
+    <h1>Success</h1>
+    <p>{{ object.url }}</p>
+    <p><a class="btn btn-link" href="{{ object.get_short_url }}">{{ object.get_short_url }}</a></p>
+    <a class="btn btn-dark btn-lg" type="submit" href="/" role="button">+ New</a>
 </div>
+</header>
+{% endblock content %}

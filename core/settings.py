@@ -25,7 +25,7 @@ SECRET_KEY = '@ori=h)pvf)88kstp#8fvq(*)&3(8+1_$*9$2jg&tjqc6gdp(%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.tirr.com', 'blog.tirr.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -130,6 +130,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR,'static'),
+#    )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
 

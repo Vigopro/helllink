@@ -1,7 +1,7 @@
 from .forms import SubmitUrlForm
 from .models import ShortURL
 from analytics.models import ClickCounter
-from django.http import HttpResponse, HttpResponseRedirect,Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 
@@ -32,7 +32,7 @@ class HomeView(View):
         if form.is_valid():
             new_url = form.cleaned_data.get("url")
             obj, created = ShortURL.objects.get_or_create(url=new_url)
-            new_context = {
+            context = {
                 "object": obj,
                 "created": created,
             }

@@ -5,6 +5,7 @@ from django.db import models
 # from django.core.urlresolvers import reverse
 from django_hosts.resolvers import reverse
 
+
 SHORTCODE_MAX = getattr(settings, "SHORTCODE_MAX", 15)
 
 class ShortURLManager(models.Manager):
